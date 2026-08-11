@@ -17,7 +17,7 @@
 | **Academic Year** | 2026–2027                                |
 
 ---
-
+<!--
 ## 📌 About This Repository
 
 This repository contains my **Full Stack Web Development laboratory work, practice programs, assignments, and assessments** completed during the academic year 2026–2027.
@@ -176,3 +176,4 @@ Academic Year: **2026–2027**
 <p align="center">
   <strong>Full Stack Web Development Lab Portfolio</strong>
 </p>
+-->
