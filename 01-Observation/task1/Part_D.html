@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HTML5 Features - College Portal</title>
+</head>
+
+<body>
+
+    <!-- HEADER-->
+    <header>
+        <h1>Anil Neerukonda Institute of Technology and Sciences</h1>
+        <p>
+            HTML5 Features Demonstration
+        </p>
+    </header>
+
+    <!--NAVIGATION BAR-->
+
+    <nav>
+        <a href="#home">Home</a> |
+        <a href="#departments">Departments</a> |
+        <a href="#media">Media</a> |
+        <a href="#preferences">Preferences</a>
+    </nav>
+    <hr>
+
+    <!--SECTION-->
+
+    <section id="home">
+        <h2>Welcome to Our College</h2>
+        <p>
+            This webpage demonstrates important HTML5 features
+            including semantic elements, multimedia, and modern
+            input controls.
+        </p>
+    </section>
+
+    <!-- ARTICLE -->
+
+    <article id="departments">
+
+        <h2>About Our Departments</h2>
+
+        <p>
+            Our institution offers undergraduate programs in
+            Computer Science, Artificial Intelligence, Electronics,
+            Electrical Engineering, and Mechanical Engineering.
+        </p>
+
+    </article>
+
+    <!-- AUDIO-->
+
+    <section id="media">
+
+        <h2>College Audio</h2>
+
+        <p>
+            Listen to the college introduction:
+        </p>
+
+        <audio controls>
+
+            <source src="image/sampleAudio.mp3" type="audio/mpeg">
+
+            Your browser does not support the audio element.
+
+        </audio>
+
+        <!-- VIDEO -->
+
+        <h2>Campus Video</h2>
+
+        <p>
+            Watch a short video related to our college campus:
+        </p>
+
+        <video width="500" controls>
+            <source src="image/sampleVideo.mp4" type="video/mp4">
+            Your browser does not support the video element.
+        </video>
+    </section>
+
+    <!--HTML5 INPUT TYPES-->
+
+    <section id="preferences">
+
+        <h2>Student Preferences</h2>
+
+        <form>
+
+            <!-- Email Input -->
+            <label for="studentEmail">
+                Email:
+            </label>
+            <input type="email" id="studentEmail" name="studentEmail" placeholder="student@example.com">
+
+            <br><br>
+
+            <!-- Date Input -->
+            <label for="joiningDate">
+                Preferred Joining Date:
+            </label>
+
+            <input type="date" id="joiningDate" name="joiningDate">
+
+            <br><br>
+
+            <!-- Number Input -->
+            <label for="age">
+                Age:
+            </label>
+
+            <input type="number" id="age" name="age" min="16" max="30">
+
+            <br><br>
+
+            <!-- Color Input -->
+            <label for="color">
+                Choose Your Favorite Color:
+            </label>
+            <input type="color" id="color" name="color">
+
+            <br><br>
+
+            <!-- Range Input -->
+            <label for="interest">
+                Interest in Technology:
+            </label>
+
+            <input type="range" id="interest" name="interest" min="0" max="100" value="50">
+
+            <br><br>
+
+            <input type="submit" value="Submit Preferences">
+
+        </form>
+    </section>
+
+    <hr>
+
+    <!-- FOOTER-->
+    <footer>
+
+        <p>
+            &copy; 2026 Anil Neerukonda Institute of Technology and Sciences
+        </p>
+        <p>
+            HTML5 Observation Task
+        </p>
+
+    </footer>
+</body>
+</html>
