@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Styled Webpage</title>
+
+    <style>
+        /* Page styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, #355c7d, #6c9bcf);
+            color: rgb(166, 159, 159);
+            text-align: center;
+            padding: 20px;
+            text-shadow: 2px 2px 3px #b12929;
+        }
+
+        header h1 {
+            font-size: 32px;
+            font-family: "Trebuchet MS", sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #333;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 7px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #6c9bcf;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        /* Introduction */
+        .intro {
+            text-align: center;
+            background-color: white;
+            margin: 20px;
+            padding: 20px;
+            border: 5px solid #1d2ee1;
+            border-radius: 50px;
+            box-shadow: 3px 3px 8px #ea0d0d;
+        }
+
+        /* Buttons */
+        button {
+            margin-top: 10px;
+            padding: 9px 16px;
+            border: 1px solid #355c7d;
+            border-radius: 6px;
+            background-color: #355c7d;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1cc63b;
+            transform: scale(1.20);
+        }
+
+        /* Canvas section */
+        .canvas-section {
+            text-align: center;
+            background-color: #e6f2ff;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #9cc5e5;
+            border-radius: 10px;
+        }
+
+        canvas {
+            background-color: white;
+            border: 2px solid #355c7d;
+            outline: 2px dashed #d31895;
+            border-radius: 6px;
+            box-shadow: 10px 3px 8px #aaa;
+        }
+
+        /* Cards */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: linear-gradient(to bottom, white, #b0ba21);
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 220px;
+            box-shadow: 3px 3px 8px #aaa;
+            text-align: center;
+        }
+
+        .card h3 {
+            font-family: Georgia, serif;
+            font-size: 23px;
+            color: #355c7d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main heading -->
+    <header>
+        <h1>My Styled Webpage</h1>
+        <p>HTML5 Graphics and CSS3 Web Styling</p>
+    </header>
+
+    <!-- Navigation bar -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#canvas">Canvas</a>
+        <a href="#cards">Technologies</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Introduction -->
+    <section id="home" class="intro">
+        <h2>Welcome</h2>
+        <p>This webpage demonstrates HTML5 Canvas and CSS3 styling.</p>
+        <button>Explore More</button>
+    </section>
+
+    <!-- Part A: HTML5 Canvas -->
+    <section id="canvas" class="canvas-section">
+        <h2>Part A - HTML5 Canvas</h2>
+        <p>The canvas contains a rectangle, circle, line and my name.</p>
+
+        <canvas id="myCanvas" width="500" height="280"></canvas>
+
+        <script>
+            // Select canvas
+            const canvas = document.getElementById("myCanvas");
+            const ctx = canvas.getContext("2d");
+
+            // Draw rectangle
+            ctx.fillStyle = "skyblue";
+            ctx.fillRect(40, 40, 130, 80);
+            
+            // Draw circle
+            ctx.beginPath();
+            ctx.arc(350, 80, 45, 0, 2 * Math.PI);
+            ctx.fillStyle = "lightgreen";
+            ctx.fill();
+            ctx.stroke();
+
+            // Draw line
+            ctx.beginPath();
+            ctx.moveTo(50, 170);
+            ctx.lineTo(450, 170);
+            ctx.strokeStyle = "skyblue";
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Display name
+            ctx.font = "26px Arial";
+            ctx.fillStyle = "darkblue";
+            ctx.fillText("Venu", 220, 230);
+        </script>
+    </section>
+
+    <!-- Part B: CSS3 Styling -->
+    <section id="cards">
+        <h2 style="text-align:center;">Part B - CSS3 Styling</h2>
+
+        <div class="card-container">
+
+            <div class="card">
+                <h3>HTML5</h3>
+                <p>HTML5 provides the structure and content of a webpage.</p>
+                <button>Learn HTML</button>
+            </div>
+
+            <div class="card">
+                <h3>CSS3</h3>
+                <p>CSS3 is used to style webpages with colors, fonts and layouts.</p>
+                <button>Learn CSS</button>
+            </div>
+
+            <div class="card">
+                <h3>JavaScript</h3>
+                <p>JavaScript adds interaction and functionality to webpages.</p>
+                <button>Learn JS</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2026 My Styled Webpage</p>
+        <p>HTML5 &amp; CSS3 Observation Task</p>
+    </footer>
+
+</body>
+
+</html>
