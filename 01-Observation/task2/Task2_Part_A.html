@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Styled Webpage</title>
+
+    <!-- External CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!--HEADER-->
+    <header>
+        <h1>My Styled Webpage</h1>
+        <p>HTML5 Canvas and CSS3 Demonstration</p>
+    </header>
+
+    <!--NAVIGATION BAR-->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#canvas">Canvas</a>
+        <a href="#cards">Features</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!--MAIN CONTENT-->
+
+    <main>
+
+        <!-- Introduction -->
+        <section id="home" class="intro">
+            <h2>Welcome</h2>
+            <p>
+                This webpage demonstrates HTML5 Canvas
+                graphics and modern CSS3 styling techniques.
+            </p>
+            <button>Explore Page</button>
+        </section>
+
+
+        <!--CANVAS-->
+
+        <section id="canvas" class="canvas-section">
+            <h2>HTML5 Canvas</h2>
+
+            <canvas id="myCanvas" width="600" height="350">
+            </canvas>
+
+            <!-- JavaScript for Canvas -->
+            <script>
+                // Get the canvas element
+                const canvas = document.getElementById("myCanvas");
+
+                // Get the 2D drawing context
+                const ctx = canvas.getContext("2d");
+
+                // Draw a rectangle
+                ctx.fillStyle = "lightblue";
+                ctx.fillRect(50, 50, 180, 90);
+
+                // Draw a circle
+                ctx.beginPath();
+                ctx.arc(400, 95, 50, 0, 2 * Math.PI);
+                ctx.fillStyle = "lightgreen";
+                ctx.fill();
+                ctx.stroke();
+
+                // Draw a line
+                ctx.beginPath();
+                ctx.moveTo(80, 220);
+                ctx.lineTo(500, 220);
+                ctx.stroke();
+
+                // Display name as text
+                ctx.font = "28px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("Venu", 250, 290);
+            </script>
+
+        </section>
+
+        <!-- THREE CONTENT CARDS-->
+
+        <section id="cards" class="cards-section">
+
+            <h2>Web Technologies</h2>
+
+            <div class="card-container">
+
+                <!-- Card 1 -->
+                <div class="card">
+                    <h3>HTML5</h3>
+                    <p>
+                        HTML5 provides the structure and
+                        semantic elements used to organize
+                        webpage content.
+                    </p>
+                    <button>Learn HTML</button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <h3>CSS3</h3>
+                    <p>
+                        CSS3 controls the appearance,
+                        layout, colors, spacing, and visual
+                        effects of a webpage.
+                    </p>
+                    <button>Learn CSS</button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card">
+                    <h3>JavaScript</h3>
+                    <p>
+                        JavaScript adds interaction and
+                        dynamic behavior to webpages.
+                    </p>
+                    <button>Learn JS</button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER-->
+
+    <footer id="contact">
+        <p>
+            &copy; 2026 My Styled Webpage
+        </p>
+        <p>
+            HTML5 &amp; CSS3 Observation Task
+        </p>
+    </footer>
+
+</body>
+</html>
