@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My To-Do List</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin: 50px;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        li {
+            margin: 10px;
+            list-style: none;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        #emptyMessage {
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My To-Do List</h1>
+
+    <input type="text" id="taskInput" placeholder="Enter a task...">
+    <button id="addButton">Add Task</button>
+
+    <p id="emptyMessage">No tasks available.</p>
+
+    <ul id="taskList"></ul>
+
+    <script>
+
+        // DOM element selection
+        const taskInput = document.getElementById("taskInput");
+        const addButton = document.getElementById("addButton");
+        const taskList = document.getElementById("taskList");
+        const emptyMessage = document.getElementById("emptyMessage");
+
+
+        // Enter key support
+        taskInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                addButton.click();
+            }
+        });
+
+
+        // Add Task button event listener
+        addButton.addEventListener("click", function () {
+
+            const taskText = taskInput.value.trim();
+
+            // Check whether input is empty
+            if (taskText === "") {
+                alert("Please enter a task.");
+                return;
+            }
+
+
+            // Create a new list item
+            const listItem = document.createElement("li");
+
+
+            // Create span for task text
+            const taskTextElement = document.createElement("span");
+            taskTextElement.textContent = taskText;
+
+            listItem.appendChild(taskTextElement);
+
+
+            // Create Complete button
+            const completeButton = document.createElement("button");
+            completeButton.textContent = "Complete";
+
+
+            // Complete button event listener
+            completeButton.addEventListener("click", function () {
+                listItem.classList.toggle("completed");
+            });
+
+
+            // Create Edit button
+            const editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+
+
+            // Edit button event listener
+            editButton.addEventListener("click", function () {
+
+                const newTask = prompt("Edit your task:", taskTextElement.textContent);
+
+                if (newTask !== null && newTask.trim() !== "") {
+                    taskTextElement.textContent = newTask.trim();
+                }
+
+            });
+
+
+            // Create Delete button
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+
+
+            // Delete button event listener
+            deleteButton.addEventListener("click", function () {
+
+                listItem.remove();
+
+                // Show message if no tasks remain
+                if (taskList.children.length === 0) {
+                    emptyMessage.style.display = "block";
+                }
+
+            });
+
+
+            // Add buttons to the list item
+            listItem.appendChild(completeButton);
+            listItem.appendChild(editButton);
+            listItem.appendChild(deleteButton);
+
+
+            // Add list item to the task list
+            taskList.appendChild(listItem);
+
+
+            // Hide empty message
+            emptyMessage.style.display = "none";
+
+
+            // Clear input box
+            taskInput.value = "";
+
+        });
+
+    </script>
+
+</body>
+
+</html>
