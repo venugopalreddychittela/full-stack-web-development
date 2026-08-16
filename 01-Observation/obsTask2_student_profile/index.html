@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+    
+        input {
+            width: 250px;
+            padding: 8px;
+            margin: 5px;
+            box-sizing: border-box;
+        }
+    
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        #profile {
+            width: 350px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border: 2px solid #333;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        #profile h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Profile</h1>
+
+    <input type="text" id="name" placeholder="Enter Name">
+    <br>
+
+    <input type="text" id="roll" placeholder="Enter Roll Number">
+    <br>
+
+    <input type="text" id="department" placeholder="Enter Department">
+    <br>
+
+    <input
+        type="number"
+        id="cgpa"
+        placeholder="Enter CGPA"
+        min="3"
+        max="10"
+        step="0.01"
+    >
+    <br>
+
+    <button id="createBtn">Create Profile</button>
+
+    <div id="profile"></div>
+
+
+    <script>
+
+        // Student class
+        class Student {
+
+            constructor(name, roll, department, cgpa) {
+                this.name = name;
+                this.roll = roll;
+                this.department = department;
+                this.cgpa = cgpa;
+            }
+        }
+
+
+        // Select button
+        const button = document.getElementById("createBtn");
+
+
+        // Add click event
+        button.addEventListener("click", function() {
+
+            // Get values from input fields
+            const name = document.getElementById("name").value;
+            const roll = document.getElementById("roll").value;
+            const department = document.getElementById("department").value;
+            const cgpa = document.getElementById("cgpa").value;
+
+
+            // Validate CGPA
+            const cgpaValue = parseFloat(cgpa);
+
+            if (
+                isNaN(cgpaValue) ||
+                cgpaValue < 3 ||
+                cgpaValue > 10 ||
+                !/^\d+(\.\d{1,2})?$/.test(cgpa)
+            ) {
+                alert("CGPA must be between 3 and 10 with up to 2 decimal places.");
+                return;
+            }
+
+
+            // Create Student object
+            const student = new Student(
+                name,
+                roll,
+                department,
+                cgpa
+            );
+
+
+            // Select profile container
+            const profile = document.getElementById("profile");
+
+
+            // Clear previous profile
+            profile.innerHTML = "";
+
+
+            // Create HTML elements dynamically
+            const heading = document.createElement("h2");
+            const namePara = document.createElement("p");
+            const rollPara = document.createElement("p");
+            const departmentPara = document.createElement("p");
+            const cgpaPara = document.createElement("p");
+
+
+            // Add content
+            heading.textContent = "Student Profile";
+            namePara.textContent = "Name : " + student.name;
+            rollPara.textContent = "Roll No : " + student.roll;
+            departmentPara.textContent =
+                "Department : " + student.department;
+            cgpaPara.textContent = "CGPA : " + student.cgpa;
+
+
+            // Add elements to webpage
+            profile.appendChild(heading);
+            profile.appendChild(namePara);
+            profile.appendChild(rollPara);
+            profile.appendChild(departmentPara);
+            profile.appendChild(cgpaPara);
+
+        });
+
+    </script>
+
+</body>
+</html>

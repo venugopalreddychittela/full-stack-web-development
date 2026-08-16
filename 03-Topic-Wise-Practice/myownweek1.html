@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Page Information -->
+    <meta charset="UTF-8">
+    <title>Student Information Portal</title>
+</head>
+<body>
+    <!-- ================= HEADER ================= -->
+    <header>
+        <!-- Using table to arrange heading and navigation -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="10">
+            <tr>
+                <!-- Website Title -->
+                <td>
+                    <h1>Student Information Portal</h1>
+                </td>
+                <!-- Navigation Menu -->
+                <td align="right">
+                    <nav>
+                        <a href="#home">Home</a> |
+                        <a href="#courses">Courses</a> |
+                        <a href="#register">Register</a> |
+                        <a href="#about">About</a>
+                    </nav>
+                </td>
+            </tr>
+        </table>
+    </header>
+    <hr>
+
+    <!-- ================= HOME SECTION ================= -->
+    <section id="home">
+        <center>
+            <h2>Welcome to Student Portal</h2>
+            <p>
+                This webpage demonstrates the basic HTML components.
+            </p>
+            <p>
+                <a href="#courses"><b>View Courses ↓</b></a>
+            </p>
+        </center>
+    </section>
+    <hr>
+
+    <!-- ================= MAIN LAYOUT ================= -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="20">
+
+        <tr valign="top">
+            <!-- ================= MAIN CONTENT ================= -->
+            <td width="70%">
+                <main>
+                    <!-- First Article -->
+                    <article id="courses">
+                        <h2>Available Courses</h2>
+                        <p><b>Published:</b> July 2026</p>
+                        <p>
+                            Students can learn
+                            <code>&lt;HTML&gt;</code>,
+                            <code>&lt;CSS&gt;</code>,
+                            and
+                            <code>&lt;JavaScript&gt;</code>.
+                        </p>
+
+                        <h3>Course List</h3>
+
+                        <!-- Unordered List -->
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>Python</li>
+                        </ul>
+                    </article>
+                    <br>
+                    <hr>
+                    <br>
+                    <!-- Second Article -->
+                    <article id="register">
+                        <h2>Student Registration Form</h2>
+                        <form action="#" method="post">
+                            <fieldset>
+                                <legend><b>Student Details</b></legend>
+
+                                <!-- Name -->
+                                <p>
+                                    <label for="name">
+                                        Full Name:
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="fullname"
+                                        placeholder="Enter your name"
+                                        required>
+                                </p>
+                                <!-- Email -->
+                                <p>
+                                    <label for="email">
+                                        Email:
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        required>
+                                </p>
+                                <!-- Password -->
+                                <p>
+                                    <label for="password">
+                                        Password:
+                                    </label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password">
+                                </p>
+
+                                <!-- Radio Buttons -->
+                                <p>
+                                    Gender:
+                                    <input
+                                        type="radio"
+                                        name="gender">
+                                    Male
+                                    <input
+                                        type="radio"
+                                        name="gender">
+                                    Female
+                                </p>
+                                <!-- Checkboxes -->
+                                <p>
+                                    Skills:
+                                    <input type="checkbox">
+                                    HTML
+                                    <input type="checkbox">
+                                    Python
+                                    <input type="checkbox">
+                                    Java
+                                </p>
+                                <!-- Dropdown -->
+                                <p>
+                                    <label for="department">
+                                        Department:
+                                    </label>
+                                    <select id="department">
+                                        <option>CSE</option>
+                                        <option>ECE</option>
+                                        <option>EEE</option>
+                                        <option>IT</option>
+                                    </select>
+                                </p>
+
+                                <!-- Textarea -->
+                                <p>
+                                    <label for="message">
+                                        About Yourself
+                                    </label>
+                                    <br>
+                                    <textarea
+                                        id="message"
+                                        rows="5"
+                                        cols="40"
+                                        placeholder="Write something...">
+                                    </textarea>
+                                </p>
+                                <!-- Buttons -->
+                                <p>
+                                    <input
+                                        type="submit"
+                                        value="Register">
+                                    <input
+                                        type="reset"
+                                        value="Clear">
+                                </p>
+                            </fieldset>
+                        </form>
+                    </article>
+                </main>
+            </td>
+            <!-- ================= SIDEBAR ================= -->
+            <td width="30%" bgcolor="#EEEEEE">
+                <aside id="about">
+                    <h3>About Portal</h3>
+                    <p>
+                        This is a static HTML webpage created
+                        without CSS or JavaScript.
+                    </p>
+                    <h4>Features</h4>
+                    <ol>
+                        <li>Simple Layout</li>
+                        <li>Semantic HTML</li>
+                        <li>Easy Navigation</li>
+                        <li>Student Registration</li>
+                    </ol>
+                </aside>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <center>
+            <p>
+                &copy; 2026 Student Information Portal
+            </p>
+        </center>
+    </footer>
+</body>
+</html>
