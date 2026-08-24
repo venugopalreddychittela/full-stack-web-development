@@ -1,0 +1,175 @@
+/* =========================
+   BASIC CSS
+========================= */
+
+/* Universal Selector */
+* {
+    box-sizing: border-box;
+}
+
+/* Element Selector */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #2563eb;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+header p {
+    font-size: 18px;
+}
+
+/* Navigation */
+nav {
+    background-color: #222;
+    text-align: center;
+    padding: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+}
+
+/* Pseudo-class */
+nav a:hover {
+    color: #60a5fa;
+}
+
+/* Main */
+main {
+    width: 900px;
+    margin: 30px auto;
+}
+
+/* Sections */
+section {
+    background-color: white;
+    margin-bottom: 25px;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #2563eb;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 8px;
+}
+
+/* =========================
+   MEDIUM CSS
+========================= */
+
+/* FLEXBOX */
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+/* Class Selector */
+.card {
+    flex: 1;
+    background-color: #eff6ff;
+    padding: 20px;
+    border-radius: 10px;
+
+    /* Box Shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    /* Transition */
+    transition: 0.3s;
+}
+
+/* Hover + Transform */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    color: #1d4ed8;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* Pseudo-class */
+tr:nth-child(even) {
+    background-color: #f1f5f9;
+}
+
+/* Form */
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Focus Pseudo-class */
+input:focus,
+textarea:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+/* Button */
+button {
+    background-color: #2563eb;
+    color: white;
+
+    padding: 12px 25px;
+
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
