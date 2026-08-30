@@ -57,7 +57,7 @@ function findLowest(arr) {
 }
 // Arrow function without parameters
 const welcome = () => {
-    console.log("Welcome to JavaScript Arrays");
+    console.log("This line demonstarates the function without parameters.");
 };
 welcome();
 // Arrow function with one parameter
