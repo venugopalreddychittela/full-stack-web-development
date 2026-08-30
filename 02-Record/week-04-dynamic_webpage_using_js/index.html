@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin: 30px auto;
+            padding: 20px;
+            width: 300px;
+            border: 2px solid black;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .dark-mode {
+            background-color: #222;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <button onclick="toggleMode()" id="modeButton">🌙 Dark Mode</button>
+
+    <h1>Student Result System</h1>
+
+    <label>Student Name:</label>
+    <input type="text" id="name">
+
+    <br><br>
+
+    <label>Subject 1:</label>
+    <input type="number" id="mark1">
+
+    <br><br>
+
+    <label>Subject 2:</label>
+    <input type="number" id="mark2">
+
+    <br><br>
+
+    <label>Subject 3:</label>
+    <input type="number" id="mark3">
+
+    <br><br>
+
+    <button onclick="calculateResult()">Calculate Result</button>
+
+    <div id="result"></div>
+
+    <script>
+
+        function toggleMode() {
+            document.body.classList.toggle("dark-mode");
+            let button = document.getElementById("modeButton");
+
+            if (document.body.classList.contains("dark-mode")) {
+                button.innerHTML = "☀️ Light Mode";
+            } else {
+                button.innerHTML = "🌙 Dark Mode";
+            }
+        }
+
+        function calculateResult() {
+
+            let name = document.getElementById("name").value;
+
+            let mark1Input = document.getElementById("mark1").value;
+            let mark2Input = document.getElementById("mark2").value;
+            let mark3Input = document.getElementById("mark3").value;
+
+            let resultBox = document.getElementById("result");
+
+            // Validate name
+            if (name === "") {
+                resultBox.style.display = "block";
+                resultBox.style.color = "red";
+                resultBox.innerHTML = "Please enter student name!";
+                return;
+            }
+
+            // Validate empty marks
+            if (mark1Input === "" || mark2Input === "" || mark3Input === "") {
+                resultBox.style.display = "block";
+                resultBox.style.color = "red";
+                resultBox.innerHTML = "Please enter all subject marks!";
+                return;
+            }
+
+            let mark1 = Number(mark1Input);
+            let mark2 = Number(mark2Input);
+            let mark3 = Number(mark3Input);
+
+            // Validate mark range
+            if (
+                mark1 < 0 || mark1 > 100 ||
+                mark2 < 0 || mark2 > 100 ||
+                mark3 < 0 || mark3 > 100
+            ) {
+                resultBox.style.display = "block";
+                resultBox.style.color = "red";
+                resultBox.innerHTML = "Marks must be between 0 and 100!";
+                return;
+            }
+
+            // Calculate total and average
+            let total = mark1 + mark2 + mark3;
+            let average = total / 3;
+
+            let status;
+            let grade;
+
+            // Check pass/fail
+            if (mark1 >= 35 && mark2 >= 35 && mark3 >= 35) {
+
+                status = "PASS";
+
+                if (average >= 90) {
+                    grade = "A+";
+                }
+                else if (average >= 80) {
+                    grade = "A";
+                }
+                else if (average >= 70) {
+                    grade = "B";
+                }
+                else if (average >= 60) {
+                    grade = "C";
+                }
+                else if (average >= 50) {
+                    grade = "D";
+                }
+                else {
+                    grade = "F";
+                }
+
+                // Dynamic styling for PASS
+                resultBox.style.color = "green";
+                resultBox.style.borderColor = "green";
+
+            } else {
+
+                status = "FAIL";
+                grade = "F";
+
+                // Dynamic styling for FAIL
+                resultBox.style.color = "red";
+                resultBox.style.borderColor = "red";
+            }
+
+            // Show result box
+            resultBox.style.display = "block";
+
+            // Display result
+            resultBox.innerHTML =
+                "<h2>Student Result</h2>" +
+                "<p><b>Name:</b> " + name + "</p>" +
+                "<p><b>Total:</b> " + total + "</p>" +
+                "<p><b>Average:</b> " + average.toFixed(2) + "</p>" +
+                "<p><b>Status:</b> " + status + "</p>" +
+                "<h2>Grade: " + grade + "</h2>";
+        }
+
+    </script>
+
+</body>
+
+</html>

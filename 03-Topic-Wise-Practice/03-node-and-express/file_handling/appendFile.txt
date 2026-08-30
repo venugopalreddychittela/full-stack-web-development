@@ -1,0 +1,2 @@
+This is the original content of append file.
+This content is added using appendFile method.
