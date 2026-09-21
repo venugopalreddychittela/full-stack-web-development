@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Demonstration</title>
+</head>
+<body>
+
+    <h2 id="heading">Original Heading</h2>
+
+    <p id="message">This is the original paragraph.</p>
+
+    <button onclick="changeContent()">Change Content</button>
+    <button onclick="changeStyle()">Change Style</button>
+    <button onclick="changeAttribute()">Change Attribute</button>
+
+    <script>
+
+        // Change the content of an element
+        function changeContent() {
+            document.getElementById("message").textContent =
+                "The paragraph content has been changed using JavaScript.";
+        }
+
+        // Change the style of an element
+        function changeStyle() {
+            const heading = document.getElementById("heading");
+
+            heading.style.color = "blue";
+            heading.style.backgroundColor = "lightgray";
+            heading.style.padding = "10px";
+        }
+
+        // Change an HTML attribute
+        function changeAttribute() {
+            const message = document.getElementById("message");
+
+            message.setAttribute("title", "This title was added using JavaScript");
+
+            alert("Title attribute has been added.");
+        }
+
+    </script>
+
+</body>
+</html>

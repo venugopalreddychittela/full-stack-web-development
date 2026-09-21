@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Calculator</title>
+</head>
+<body>
+
+    <h2>Interactive Product Calculator</h2>
+
+    <label>Product Name:</label>
+    <input type="text" id="productName" placeholder="Enter product name">
+    <br><br>
+
+    <label>Quantity:</label>
+    <input type="number" id="quantity" min="1" value="1">
+    <br><br>
+
+    <label>Price:</label>
+    <input type="number" id="price" min="0" step="0.01" value="0">
+    <br><br>
+
+    <h3 id="result">Total Price: ₹0.00</h3>
+
+    <script>
+        // Function to calculate the total price
+        function calculateTotal() {
+            const quantity = Number(document.getElementById("quantity").value);
+            const price = Number(document.getElementById("price").value);
+
+            // Validate the input values
+            if (quantity <= 0 || price < 0) {
+                document.getElementById("result").textContent =
+                    "Please enter valid quantity and price.";
+                return;
+            }
+
+            const total = quantity * price;
+
+            // Display the calculated result
+            document.getElementById("result").textContent =
+                "Total Price: ₹" + total.toFixed(2);
+        }
+
+        // Recalculate whenever quantity or price changes
+        document.getElementById("quantity")
+            .addEventListener("input", calculateTotal);
+
+        document.getElementById("price")
+            .addEventListener("input", calculateTotal);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+| Function                                 | Class                                                  |
+| ---------------------------------------- | ------------------------------------------------------ |
+| A function is a reusable block of code.  | A class is a blueprint for creating objects.           |
+| Mainly used to perform a task.           | Used to represent objects with properties and methods. |
+| Can be called directly.                  | Objects are generally created using `new`.             |
+| Can accept parameters and return values. | Can contain a constructor, properties, and methods.    |
+
+A function is a reusable block of code used to perform a specific task, whereas a class is a blueprint for creating objects. A class can contain properties and methods, and multiple objects can be created from the same class using the new keyword.
