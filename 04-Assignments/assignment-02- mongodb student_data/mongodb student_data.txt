@@ -1,0 +1,673 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\venug> mongosh --version
+2.12.0
+PS C:\Users\venug> mongod --version
+mongod : The term 'mongod' is not recognized as the name of a cmdlet, function, script file, or operable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ mongod --version
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (mongod:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\venug> mongodb --version
+mongodb : The term 'mongodb' is not recognized as the name of a cmdlet, function, script file, or operable program.
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ mongodb --version
++ ~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (mongodb:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\venug> Get-Service MongoDB -ErrorAction SilentlyContinue
+
+Status   Name               DisplayName
+------   ----               -----------
+Running  MongoDB            MongoDB Server (MongoDB)
+
+
+PS C:\Users\venug> Get-Service | Where-Object {$_.Name -like "*Mongo*"}
+
+Status   Name               DisplayName
+------   ----               -----------
+Running  MongoDB            MongoDB Server (MongoDB)
+
+
+PS C:\Users\venug> mongod --version
+mongod : The term 'mongod' is not recognized as the name of a
+cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that
+the path is correct and try again.
+At line:1 char:1
++ mongod --version
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (mongod:String)
+   [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\venug> mongosh
+Current Mongosh Log ID: 6ac0e0587d8e0c136eb05396
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.12.0
+Using MongoDB:          9.0.2
+Using Mongosh:          2.12.0
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+
+To help improve our products, pseudo-anonymous usage data is collected from interactive and agentic sessions only, and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+------
+   The server generated these startup warnings when booting
+   2026-10-03T16:25:08.559+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+admin   40.00 KiB
+config  12.00 KiB
+local   40.00 KiB
+test> use collegeDB
+switched to db collegeDB
+collegeDB> db.createCollection("students")
+{ ok: 1 }
+collegeDB> show collections
+students
+collegeDB> db.students.insertMany([
+|   {
+|     rollNo: "23CM001",
+|     name: "Ravi Kumar",
+|     branch: "CSE-AIML",
+|     year: 3,
+|     marks: 85,
+|     email: "ravi@example.com"
+|   },
+|   {
+|     rollNo: "23CM002",
+|     name: "Anita Sharma",
+|     branch: "CSE",
+|     year: 2,
+|     marks: 92,
+|     email: "anita@example.com"
+|   },
+|   {
+|     rollNo: "23CM003",
+|     name: "Kiran Reddy",
+|     branch: "ECE",
+|     year: 3,
+|     marks: 68,
+|     email: "kiran@example.com"
+|   },
+|   {
+|     rollNo: "23CM004",
+|     name: "Priya Singh",
+|     branch: "CSE-AIML",
+|     year: 4,
+|     marks: 45,
+|     email: "priya@example.com"
+|   },
+|   {
+|     rollNo: "23CM005",
+|     name: "Arjun Rao",
+|     branch: "IT",
+|     year: 2,
+|     marks: 78,
+|     email: "arjun@example.com"
+|   }
+| ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6ac0e1057d8e0c136eb05397'),
+    '1': ObjectId('6ac0e1057d8e0c136eb05398'),
+    '2': ObjectId('6ac0e1057d8e0c136eb05399'),
+    '3': ObjectId('6ac0e1057d8e0c136eb0539a'),
+    '4': ObjectId('6ac0e1057d8e0c136eb0539b')
+  }
+}
+collegeDB> db.students.find().pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 85,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05398'),
+    rollNo: '23CM002',
+    name: 'Anita Sharma',
+    branch: 'CSE',
+    year: 2,
+    marks: 92,
+    email: 'anita@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05399'),
+    rollNo: '23CM003',
+    name: 'Kiran Reddy',
+    branch: 'ECE',
+    year: 3,
+    marks: 68,
+    email: 'kiran@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb0539a'),
+    rollNo: '23CM004',
+    name: 'Priya Singh',
+    branch: 'CSE-AIML',
+    year: 4,
+    marks: 45,
+    email: 'priya@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb0539b'),
+    rollNo: '23CM005',
+    name: 'Arjun Rao',
+    branch: 'IT',
+    year: 2,
+    marks: 78,
+    email: 'arjun@example.com'
+  }
+]
+collegeDB> db.students.find({ branch: "CSE-AIML" }).pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 85,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb0539a'),
+    rollNo: '23CM004',
+    name: 'Priya Singh',
+    branch: 'CSE-AIML',
+    year: 4,
+    marks: 45,
+    email: 'priya@example.com'
+  }
+]
+collegeDB> db.students.find({ marks: { $gt: 75 } }).pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 85,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05398'),
+    rollNo: '23CM002',
+    name: 'Anita Sharma',
+    branch: 'CSE',
+    year: 2,
+    marks: 92,
+    email: 'anita@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb0539b'),
+    rollNo: '23CM005',
+    name: 'Arjun Rao',
+    branch: 'IT',
+    year: 2,
+    marks: 78,
+    email: 'arjun@example.com'
+  }
+]
+collegeDB> db.students.findOne({ rollNo: "23CM001" })
+{
+  _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+  rollNo: '23CM001',
+  name: 'Ravi Kumar',
+  branch: 'CSE-AIML',
+  year: 3,
+  marks: 85,
+  email: 'ravi@example.com'
+}
+collegeDB> db.students.find({ year: 3 }).pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 85,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05399'),
+    rollNo: '23CM003',
+    name: 'Kiran Reddy',
+    branch: 'ECE',
+    year: 3,
+    marks: 68,
+    email: 'kiran@example.com'
+  }
+]
+collegeDB> db.students.find({ marks: { $gte: 80 } }).pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 85,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05398'),
+    rollNo: '23CM002',
+    name: 'Anita Sharma',
+    branch: 'CSE',
+    year: 2,
+    marks: 92,
+    email: 'anita@example.com'
+  }
+]
+collegeDB> db.students.updateOne(
+|   { rollNo: "23CM001" },
+|   { $set: { marks: 90 } }
+| )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+collegeDB> db.students.findOne({ rollNo: "23CM001" })
+{
+  _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+  rollNo: '23CM001',
+  name: 'Ravi Kumar',
+  branch: 'CSE-AIML',
+  year: 3,
+  marks: 90,
+  email: 'ravi@example.com'
+}
+collegeDB> db.students.updateOne(
+|   { rollNo: "23CM003" },
+|   { $set: { email: "kiran.reddy@example.com" } }
+| )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+collegeDB> db.students.findOne({ rollNo: "23CM003" })
+{
+  _id: ObjectId('6ac0e1057d8e0c136eb05399'),
+  rollNo: '23CM003',
+  name: 'Kiran Reddy',
+  branch: 'ECE',
+  year: 3,
+  marks: 68,
+  email: 'kiran.reddy@example.com'
+}
+collegeDB> db.students.deleteOne({ rollNo: "23CM005" })
+{ acknowledged: true, deletedCount: 1 }
+collegeDB> db.students.find().pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 90,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05398'),
+    rollNo: '23CM002',
+    name: 'Anita Sharma',
+    branch: 'CSE',
+    year: 2,
+    marks: 92,
+    email: 'anita@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05399'),
+    rollNo: '23CM003',
+    name: 'Kiran Reddy',
+    branch: 'ECE',
+    year: 3,
+    marks: 68,
+    email: 'kiran.reddy@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb0539a'),
+    rollNo: '23CM004',
+    name: 'Priya Singh',
+    branch: 'CSE-AIML',
+    year: 4,
+    marks: 45,
+    email: 'priya@example.com'
+  }
+]
+collegeDB> db.students.find().sort({ marks: -1 }).pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05398'),
+    rollNo: '23CM002',
+    name: 'Anita Sharma',
+    branch: 'CSE',
+    year: 2,
+    marks: 92,
+    email: 'anita@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 90,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05399'),
+    rollNo: '23CM003',
+    name: 'Kiran Reddy',
+    branch: 'ECE',
+    year: 3,
+    marks: 68,
+    email: 'kiran.reddy@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb0539a'),
+    rollNo: '23CM004',
+    name: 'Priya Singh',
+    branch: 'CSE-AIML',
+    year: 4,
+    marks: 45,
+    email: 'priya@example.com'
+  }
+]
+collegeDB> db.students.createIndex({ rollNo: 1 })
+rollNo_1
+collegeDB> db.students.getIndexes()
+[
+  {
+    v: 2,
+    key: { _id: 1 },
+    name: '_id_',
+    collation: { locale: 'simple' }
+  },
+  {
+    v: 2,
+    key: { rollNo: 1 },
+    name: 'rollNo_1',
+    collation: { locale: 'simple' }
+  }
+]
+collegeDB> db.students.find({ rollNo: "23CM001" }).explain("executionStats")
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'collegeDB.students',
+    parsedQuery: { rollNo: { '$eq': '23CM001' } },
+    indexFilterSet: false,
+    queryHash: '622AC899',
+    planCacheShapeHash: '622AC899',
+    planCacheKey: '86FE5EFB',
+    optimizationTimeMillis: 13,
+    optimizationTimeMicros: 13601,
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    prunedSimilarIndexes: false,
+    winningPlan: {
+      isCached: false,
+      stage: 'FETCH',
+      nss: 'collegeDB.students',
+      inputStage: {
+        stage: 'IXSCAN',
+        nss: 'collegeDB.students',
+        keyPattern: { rollNo: 1 },
+        indexName: 'rollNo_1',
+        isMultiKey: false,
+        multiKeyPaths: { rollNo: [] },
+        isUnique: false,
+        isSparse: false,
+        isPartial: false,
+        indexVersion: 2,
+        direction: 'forward',
+        indexBounds: { rollNo: [ '["23CM001", "23CM001"]' ] }
+      }
+    },
+    rejectedPlans: []
+  },
+  executionStats: {
+    executionSuccess: true,
+    nReturned: 1,
+    executionTimeMillis: 70,
+    executionTimeMicros: 70676,
+    totalKeysExamined: 1,
+    totalDocsExamined: 1,
+    executionStages: {
+      isCached: false,
+      stage: 'FETCH',
+      nReturned: 1,
+      executionTimeMillisEstimate: 46,
+      works: 2,
+      advanced: 1,
+      needTime: 0,
+      needYield: 0,
+      saveState: 1,
+      restoreState: 1,
+      isEOF: 1,
+      nss: 'collegeDB.students',
+      docsExamined: 1,
+      alreadyHasObj: 0,
+      inputStage: {
+        stage: 'IXSCAN',
+        nReturned: 1,
+        executionTimeMillisEstimate: 46,
+        works: 2,
+        advanced: 1,
+        needTime: 0,
+        needYield: 0,
+        saveState: 1,
+        restoreState: 1,
+        isEOF: 1,
+        nss: 'collegeDB.students',
+        keyPattern: { rollNo: 1 },
+        indexName: 'rollNo_1',
+        isMultiKey: false,
+        multiKeyPaths: { rollNo: [] },
+        isUnique: false,
+        isSparse: false,
+        isPartial: false,
+        indexVersion: 2,
+        direction: 'forward',
+        indexBounds: { rollNo: [ '["23CM001", "23CM001"]' ] },
+        keysExamined: 1,
+        seeks: 1,
+        dupsTested: 0,
+        dupsDropped: 0,
+        peakTrackedMemBytes: 0
+      }
+    }
+  },
+  queryShapeHash: 'CB0B3C25236D82339E5C45934BE773F74AC7FDF2A670F90A55FA5CC7BA400708',
+  command: {
+    find: 'students',
+    filter: { rollNo: '23CM001' },
+    '$db': 'collegeDB'
+  },
+  serverInfo: {
+    host: 'VENU',
+    port: 27017,
+    version: '9.0.2',
+    gitVersion: 'c4d309807b94ac30edcca32e35e88a9598eadfc8'
+  },
+  serverParameters: {
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryFrameworkControl: 'trySbeRestricted',
+    internalQueryPlannerIgnoreIndexWithCollationForRegex: 1
+  },
+  ok: 1
+}
+collegeDB> db.students.find({ marks: { $gt: 80 } }).pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 90,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05398'),
+    rollNo: '23CM002',
+    name: 'Anita Sharma',
+    branch: 'CSE',
+    year: 2,
+    marks: 92,
+    email: 'anita@example.com'
+  }
+]
+collegeDB> db.students.find({ marks: { $lt: 50 } }).pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb0539a'),
+    rollNo: '23CM004',
+    name: 'Priya Singh',
+    branch: 'CSE-AIML',
+    year: 4,
+    marks: 45,
+    email: 'priya@example.com'
+  }
+]
+collegeDB> db.students.find().sort({ marks: -1 }).limit(1)
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05398'),
+    rollNo: '23CM002',
+    name: 'Anita Sharma',
+    branch: 'CSE',
+    year: 2,
+    marks: 92,
+    email: 'anita@example.com'
+  }
+]
+collegeDB> db.students.find({ branch: "CSE-AIML" }).pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 90,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb0539a'),
+    rollNo: '23CM004',
+    name: 'Priya Singh',
+    branch: 'CSE-AIML',
+    year: 4,
+    marks: 45,
+    email: 'priya@example.com'
+  }
+]
+collegeDB> db.students.find().sort({ marks: 1 }).pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb0539a'),
+    rollNo: '23CM004',
+    name: 'Priya Singh',
+    branch: 'CSE-AIML',
+    year: 4,
+    marks: 45,
+    email: 'priya@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05399'),
+    rollNo: '23CM003',
+    name: 'Kiran Reddy',
+    branch: 'ECE',
+    year: 3,
+    marks: 68,
+    email: 'kiran.reddy@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 90,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05398'),
+    rollNo: '23CM002',
+    name: 'Anita Sharma',
+    branch: 'CSE',
+    year: 2,
+    marks: 92,
+    email: 'anita@example.com'
+  }
+]
+collegeDB> db.students.find().pretty()
+[
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05397'),
+    rollNo: '23CM001',
+    name: 'Ravi Kumar',
+    branch: 'CSE-AIML',
+    year: 3,
+    marks: 90,
+    email: 'ravi@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05398'),
+    rollNo: '23CM002',
+    name: 'Anita Sharma',
+    branch: 'CSE',
+    year: 2,
+    marks: 92,
+    email: 'anita@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb05399'),
+    rollNo: '23CM003',
+    name: 'Kiran Reddy',
+    branch: 'ECE',
+    year: 3,
+    marks: 68,
+    email: 'kiran.reddy@example.com'
+  },
+  {
+    _id: ObjectId('6ac0e1057d8e0c136eb0539a'),
+    rollNo: '23CM004',
+    name: 'Priya Singh',
+    branch: 'CSE-AIML',
+    year: 4,
+    marks: 45,
+    email: 'priya@example.com'
+  }
+]
+collegeDB>
