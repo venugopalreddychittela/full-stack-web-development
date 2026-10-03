@@ -1,4 +1,4 @@
-use collegeDB
+//use collegeDB
 
 db.createCollection("students")
 
