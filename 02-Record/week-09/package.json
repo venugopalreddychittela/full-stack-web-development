@@ -1,0 +1,12 @@
+{
+  "name": "experiment-9-mongodb-crud",
+  "version": "1.0.0",
+  "description": "Student Management System using MongoDB CRUD operations",
+  "main": "student_crud.js",
+  "scripts": {
+    "start": "node student_crud.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.20.0"
+  }
+}

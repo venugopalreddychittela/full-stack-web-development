@@ -1,0 +1,14 @@
+{
+  "name": "student-management-backend",
+  "version": "1.0.0",
+  "description": "Full Stack Student Management System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0"
+  }
+}

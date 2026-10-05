@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Student Management System</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .form-container {
+      background: white;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 8px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+    }
+
+    button {
+      padding: 9px 14px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      background: white;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #333;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Student Management System</h1>
+
+  <div class="form-container">
+    <h2>Add Student</h2>
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="text" id="branch" placeholder="Branch">
+    <input type="number" id="marks" placeholder="Marks">
+    <button onclick="addStudent()">Add Student</button>
+    <button onclick="getStudents()">Refresh</button>
+  </div>
+
+  <div class="form-container">
+    <h2>Student Records</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Branch</th>
+          <th>Marks</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id="studentTable">
+      </tbody>
+
+    </table>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
