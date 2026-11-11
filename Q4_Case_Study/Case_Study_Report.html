@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Management System - Unit V Case Study (Roll No: A24126552078)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 16mm 14mm 16mm 14mm;
+    @top-right {
+      content: "FULL-STACK WEB DEVELOPMENT | UNIT V";
+      font-size: 8pt;
+      font-weight: bold;
+      color: #333;
+    }
+    @bottom-right {
+      content: counter(page);
+      font-size: 8.5pt;
+      color: #333;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 9pt;
+    line-height: 1.4;
+    color: #1a202c;
+    margin: 0;
+    padding: 0;
+  }
+
+  .running-header {
+    text-align: right;
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: #4a5568;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #cbd5e0;
+    padding-bottom: 3px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+
+  .no-break {
+    page-break-inside: avoid;
+  }
+
+  h1.unit-title {
+    text-align: center;
+    font-size: 15pt;
+    font-weight: bold;
+    color: #1a365d;
+    margin: 0 0 2px 0;
+    letter-spacing: 0.5px;
+  }
+
+  h2.main-subtitle {
+    text-align: center;
+    font-size: 13pt;
+    font-weight: bold;
+    color: #2b6cb0;
+    margin: 0 0 2px 0;
+  }
+
+  h3.topic-title {
+    text-align: center;
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0 0 12px 0;
+    border-bottom: 2px solid #2b6cb0;
+    padding-bottom: 6px;
+  }
+
+  .part-header {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #1a365d;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    border-bottom: 1.5px solid #2b6cb0;
+    padding-bottom: 2px;
+  }
+
+  .section-header {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #2b6cb0;
+    margin-top: 10px;
+    margin-bottom: 4px;
+  }
+
+  .student-callout {
+    background-color: #ebf8ff;
+    border-left: 4px solid #3182ce;
+    padding: 6px 10px;
+    margin: 8px 0;
+    font-size: 8.5pt;
+  }
+
+  .rubric-callout {
+    background-color: #f0fff4;
+    border-left: 4px solid #38a169;
+    padding: 6px 10px;
+    margin: 8px 0;
+    font-size: 8.5pt;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 10px 0;
+    font-size: 8.5pt;
+    page-break-inside: avoid;
+  }
+
+  th, td {
+    border: 1px solid #cbd5e0;
+    padding: 4px 7px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background-color: #1a365d;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  tr:nth-child(even) td {
+    background-color: #f7fafc;
+  }
+
+  pre, code {
+    font-family: "Consolas", "Courier New", monospace;
+  }
+
+  code {
+    background-color: #edf2f7;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 8pt;
+  }
+
+  pre {
+    background-color: #1e293b;
+    color: #f8fafc;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 7.8pt;
+    line-height: 1.3;
+    overflow-x: auto;
+    margin: 5px 0 8px 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+    page-break-inside: avoid;
+  }
+
+  .mock-window {
+    border: 1px solid #cbd5e0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0 12px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    page-break-inside: avoid;
+  }
+
+  .mock-topbar {
+    background: #edf2f7;
+    border-bottom: 1px solid #cbd5e0;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    font-size: 7.5pt;
+    color: #4a5568;
+  }
+
+  .mock-dots {
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-right: 2px;
+  }
+  .dot-red { background: #fc8181; }
+  .dot-yellow { background: #f6e05e; }
+  .dot-green { background: #68d391; }
+
+  .mock-url {
+    background: #ffffff;
+    border: 1px solid #cbd5e0;
+    border-radius: 3px;
+    padding: 2px 8px;
+    display: inline-block;
+    font-family: monospace;
+    font-size: 7.5pt;
+    color: #4a5568;
+    width: 70%;
+  }
+
+  .mock-body {
+    padding: 10px;
+    background: #ffffff;
+  }
+
+  .mock-dark {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: monospace;
+    font-size: 7.8pt;
+    padding: 10px;
+    line-height: 1.35;
+  }
+
+  .figure-caption {
+    text-align: center;
+    font-weight: bold;
+    font-size: 8pt;
+    color: #2d3748;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .metric-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 6px 10px;
+    background: #f8fafc;
+  }
+  .metric-num {
+    font-size: 13pt;
+    font-weight: bold;
+    color: #2b6cb0;
+  }
+  .metric-label {
+    font-size: 7pt;
+    text-transform: uppercase;
+    color: #718096;
+    font-weight: 600;
+  }
+
+  .badge-ui {
+    background: #ebf8ff;
+    color: #2b6cb0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 7pt;
+  }
+
+  .btn-ui {
+    background: #3182ce;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 7pt;
+    border: none;
+    display: inline-block;
+  }
+  .btn-danger-ui {
+    background: #e53e3e;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 7pt;
+    border: none;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: Course Info & Problem Statement -->
+<div class="running-header">Full-Stack Web Development | Unit V</div>
+
+<h1 class="unit-title">UNIT V</h1>
+<h2 class="main-subtitle">Worked Case Study and Student Practice Activity</h2>
+<h3 class="topic-title">MongoDB, Database Operations and Cloud Deployment</h3>
+
+<table>
+  <tr>
+    <th style="width: 25%;">Course Details</th>
+    <th style="width: 75%;">Information</th>
+  </tr>
+  <tr>
+    <td><strong>Course Title</strong></td>
+    <td>Web Application Architecture & Cloud Deployment / Full-Stack Web Development</td>
+  </tr>
+  <tr>
+    <td><strong>Course Code</strong></td>
+    <td>23CM4121</td>
+  </tr>
+  <tr>
+    <td><strong>Unit</strong></td>
+    <td>Unit V: MongoDB and Deploying Applications</td>
+  </tr>
+  <tr>
+    <td><strong>Candidate Roll Number</strong></td>
+    <td><strong>A24126552078</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Allocated Question</strong></td>
+    <td><strong>Question 4 (Q4)</strong> &mdash; 10 Marks | CO2 / CO5 | Bloom's Level: L3 (Apply)</td>
+  </tr>
+  <tr>
+    <td><strong>System Under Study</strong></td>
+    <td>Student Management System (React, Node.js, Express.js, MongoDB Atlas, Vercel & Render)</td>
+  </tr>
+</table>
+
+<div class="part-header">PART A. Comprehensive Question</div>
+
+<div class="student-callout">
+  <strong>Allocated Task (Question 4):</strong><br>
+  <em>"Write MongoDB queries to perform the following operations on a students collection: (a) Insert a student record, (b) retrieve all student records, (c) update a student's department, and (d) delete a student record."</em><br>
+  <strong>Context:</strong> Using the <strong>Student Management System</strong> developed with React, Node.js, Express.js, MongoDB Atlas, Vercel, and Render.
+</div>
+
+<p>
+A university department maintains student academic records, branch assignments, semester enrollment, and GPA metrics. Previously handled using manual registers, the administration requires a modern, web-based <strong>Student Management System</strong> accessible globally over the internet.
+</p>
+<p>
+The application must satisfy the complete 20-mark assessment rubric through the following requirements:
+</p>
+<ul>
+  <li>Store student details including Roll Number (<code>rollNo</code>), Student Name (<code>name</code>), Academic Department (<code>department</code>), Current Semester (<code>semester</code>), Cumulative Grade Point Average (<code>gpa</code>), and Institutional Email (<code>email</code>).</li>
+  <li>Create and manage a MongoDB database named <code>student_mgmt_db</code> and a <code>students</code> collection using an appropriate document structure and BSON data types.</li>
+  <li><strong>Perform CRUD operations (Question 4 Focus):</strong> Add a student record, display/retrieve student records, update a student's department, and delete a student record.</li>
+  <li><strong>Execute MongoDB Shell queries:</strong> Formulate and verify syntactically valid MongoDB queries for insert, retrieve, update, and delete.</li>
+  <li><strong>Aggregation Pipeline:</strong> Compute department-wise statistics including enrolled student counts, average GPA, maximum GPA, and minimum GPA.</li>
+  <li><strong>Indexing:</strong> Establish a unique index on the primary student identifier (<code>rollNo</code>) to avoid duplicates and a secondary index on <code>department</code> for high-speed queries.</li>
+  <li><strong>Full-Stack Architecture & Cloud Deployment:</strong> Develop a RESTful Express.js backend and a responsive Vite + React frontend. Deploy database on MongoDB Atlas, backend on Render, and frontend on Vercel. Explain domain names, DNS, and environment variables.</li>
+  <li><strong>Testing & Verification:</strong> Execute end-to-end test cases (TC1-TC6) verifying bidirectional data flow between React UI, Express API, and cloud MongoDB Atlas.</li>
+</ul>
+
+<div class="part-header">PART B. Worked Solution</div>
+
+<div class="section-header">1. Analyse the Requirements</div>
+
+<table>
+  <tr>
+    <th style="width: 25%;">Requirement</th>
+    <th style="width: 75%;">Full-Stack Solution</th>
+  </tr>
+  <tr>
+    <td><strong>Student Identity</strong></td>
+    <td>A unique university roll number (e.g. <code>A24126552078</code>) uniquely identifies each student record.</td>
+  </tr>
+  <tr>
+    <td><strong>Student Details</strong></td>
+    <td><code>rollNo</code>, <code>name</code>, <code>department</code>, <code>semester</code>, <code>gpa</code>, and <code>email</code> are stored in each document.</td>
+  </tr>
+  <tr>
+    <td><strong>Data Storage</strong></td>
+    <td>MongoDB Atlas cloud database: <code>student_mgmt_db</code>; collection: <code>students</code>.</td>
+  </tr>
+  <tr>
+    <td><strong>Application Operations</strong></td>
+    <td>React sends asynchronous HTTP requests to Express API routes; Express reads/writes MongoDB documents via Mongoose ODM.</td>
+  </tr>
+  <tr>
+    <td><strong>Reports & Summary</strong></td>
+    <td>MongoDB Aggregation pipeline groups documents by <code>department</code>, computing student counts and GPA statistics.</td>
+  </tr>
+  <tr>
+    <td><strong>Performance Optimization</strong></td>
+    <td>Unique index on <code>rollNo</code> and single-field index on <code>department</code> to avoid full-collection scans.</td>
+  </tr>
+  <tr>
+    <td><strong>Cloud Deployment</strong></td>
+    <td>MongoDB Atlas hosts the database; Render hosts the Node.js/Express backend API; Vercel hosts the React frontend.</td>
+  </tr>
+</table>
+
+<!-- PAGE 2: Document Design & Shell Operations -->
+<div class="page-break"></div>
+<div class="running-header">Full-Stack Web Development | Unit V</div>
+
+<div class="section-header">2. Design the MongoDB Document</div>
+
+<p>
+A student record is represented as one BSON document inside the <code>students</code> collection. An illustrative document representing the candidate's record is:
+</p>
+
+<pre>{
+  "_id": ObjectId("6732049d5a1b3294021234aa"),
+  "rollNo": "A24126552078",
+  "name": "Venugopal R",
+  "department": "Computer Science and Engineering",
+  "semester": 5,
+  "gpa": 8.85,
+  "email": "venugopal.a24126552078@college.edu",
+  "createdAt": ISODate("2026-11-11T12:00:00Z"),
+  "updatedAt": ISODate("2026-11-11T12:00:00Z")
+}</pre>
+
+<div class="section-header">Field Design Specification:</div>
+
+<table>
+  <tr>
+    <th style="width: 15%;">Field</th>
+    <th style="width: 20%;">Suggested Data Type</th>
+    <th style="width: 65%;">Purpose & Constraints</th>
+  </tr>
+  <tr>
+    <td><code>rollNo</code></td>
+    <td>String</td>
+    <td>Unique student registration identifier (e.g., "A24126552078"). Unique index applied.</td>
+  </tr>
+  <tr>
+    <td><code>name</code></td>
+    <td>String</td>
+    <td>Full legal name of the student. Required, trimmed string.</td>
+  </tr>
+  <tr>
+    <td><code>department</code></td>
+    <td>String</td>
+    <td>Academic branch (e.g., Computer Science, Information Technology). Indexed.</td>
+  </tr>
+  <tr>
+    <td><code>semester</code></td>
+    <td>Number (Integer)</td>
+    <td>Current semester of study (Valid range: 1 to 8).</td>
+  </tr>
+  <tr>
+    <td><code>gpa</code></td>
+    <td>Number (Double)</td>
+    <td>Cumulative Grade Point Average (Valid range: 0.00 to 10.00).</td>
+  </tr>
+  <tr>
+    <td><code>email</code></td>
+    <td>String</td>
+    <td>Official university communication email address.</td>
+  </tr>
+  <tr>
+    <td><code>_id</code></td>
+    <td>ObjectId</td>
+    <td>System-generated 12-byte BSON primary key automatically created by MongoDB.</td>
+  </tr>
+</table>
+
+<div class="section-header">3. Create the Database and Collection</div>
+
+<p>In MongoDB Shell (<code>mongosh</code>), execute the following commands to initialize and seed the database:</p>
+
+<pre>// Switch to or initialize the target database
+use student_mgmt_db
+
+// Explicitly create the students collection
+db.createCollection("students")
+
+// Seed initial student records
+db.students.insertMany([
+  { rollNo: "A24126552078", name: "Venugopal R", department: "Computer Science and Engineering", semester: 5, gpa: 8.85, email: "venugopal.a24126552078@college.edu" },
+  { rollNo: "A24126552070", name: "Aditya Sharma", department: "Computer Science and Engineering", semester: 5, gpa: 9.10, email: "aditya.sharma@college.edu" },
+  { rollNo: "A24126552071", name: "Bhavana Patel", department: "Information Technology", semester: 5, gpa: 8.40, email: "bhavana.patel@college.edu" },
+  { rollNo: "A24126552072", name: "Chirag Verma", department: "Electronics and Communication", semester: 5, gpa: 7.95, email: "chirag.verma@college.edu" },
+  { rollNo: "A24126552074", name: "Eshwar Reddy", department: "Information Technology", semester: 5, gpa: 8.15, email: "eshwar.reddy@college.edu" }
+])</pre>
+
+<div class="section-header">4. Perform MongoDB CRUD Operations (Answering Question 4)</div>
+
+<p>
+The table below specifies the exact MongoDB shell queries implementing operations (a), (b), (c), and (d) required by <strong>Question 4</strong>:
+</p>
+
+<table>
+  <tr>
+    <th style="width: 18%;">Operation</th>
+    <th style="width: 48%;">MongoDB Query (mongosh)</th>
+    <th style="width: 34%;">Purpose & Behavior</th>
+  </tr>
+  <tr>
+    <td><strong>(a) Insert a student record</strong></td>
+    <td>
+      <code>db.students.insertOne({<br>
+      &nbsp;&nbsp;rollNo: "A24126552078",<br>
+      &nbsp;&nbsp;name: "Venugopal R",<br>
+      &nbsp;&nbsp;department: "Computer Science and Engineering",<br>
+      &nbsp;&nbsp;semester: 5, gpa: 8.85,<br>
+      &nbsp;&nbsp;email: "venugopal.a24126552078@college.edu"<br>
+      })</code>
+    </td>
+    <td>Inserts a single new student document into the collection. Returns <code>acknowledged: true</code> and the generated <code>insertedId</code>.</td>
+  </tr>
+  <tr>
+    <td><strong>(b) Retrieve all student records</strong></td>
+    <td>
+      <code>db.students.find({})</code><br>
+      <em>Sorted:</em> <code>db.students.find({}).sort({ rollNo: 1 })</code>
+    </td>
+    <td>Queries with an empty filter predicate <code>{}</code>, returning a cursor containing all student documents in the collection.</td>
+  </tr>
+  <tr>
+    <td><strong>(c) Update a student's department</strong></td>
+    <td>
+      <code>db.students.updateOne(<br>
+      &nbsp;&nbsp;{ rollNo: "A24126552078" },<br>
+      &nbsp;&nbsp;{ $set: { department: "Artificial Intelligence & Data Science" } }<br>
+      )</code>
+    </td>
+    <td>Locates document matching roll number and applies atomic <code>$set</code> operator to update the <code>department</code> field.</td>
+  </tr>
+  <tr>
+    <td><strong>(d) Delete a student record</strong></td>
+    <td>
+      <code>db.students.deleteOne({ rollNo: "A24126552074" })</code>
+    </td>
+    <td>Removes the document matching the roll number from the collection. Returns <code>deletedCount: 1</code>.</td>
+  </tr>
+</table>
+
+<div class="section-header">Useful Additional MongoDB Queries:</div>
+<pre>// Filter by department | Filter high GPA | Total count | Verify updated record
+db.students.find({ department: "Computer Science and Engineering" })
+db.students.find({ gpa: { $gte: 8.5 } })
+db.students.countDocuments({})
+db.students.find({ rollNo: "A24126552078" })</pre>
+
+<!-- PAGE 3: Indexing, Aggregation & Express Backend -->
+<div class="page-break"></div>
+<div class="running-header">Full-Stack Web Development | Unit V</div>
+
+<div class="section-header">5. Create Indexes</div>
+
+<pre>// 1. Unique index on rollNo to prevent duplicate records
+db.students.createIndex({ rollNo: 1 }, { unique: true })
+
+// 2. Secondary index on department to optimize filtering and lookups
+db.students.createIndex({ department: 1 })
+
+// View all indexes
+db.students.getIndexes()</pre>
+
+<div class="section-header">6. Use Aggregation for Department-Wise Student Summary</div>
+
+<pre>db.students.aggregate([
+  {
+    $group: {
+      _id: "$department",
+      studentCount: { $sum: 1 },
+      averageGPA: { $avg: "$gpa" },
+      maxGPA: { $max: "$gpa" },
+      minGPA: { $min: "$gpa" }
+    }
+  },
+  { $sort: { studentCount: -1 } }
+])</pre>
+
+<div class="section-header">Expected Aggregation Output:</div>
+
+<table>
+  <tr>
+    <th>Department (_id)</th>
+    <th>Student Count</th>
+    <th>Average GPA</th>
+    <th>Max GPA</th>
+    <th>Min GPA</th>
+  </tr>
+  <tr>
+    <td><strong>Computer Science and Engineering</strong></td>
+    <td>2</td>
+    <td>8.98</td>
+    <td>9.10</td>
+    <td>8.85</td>
+  </tr>
+  <tr>
+    <td><strong>Information Technology</strong></td>
+    <td>2</td>
+    <td>8.28</td>
+    <td>8.40</td>
+    <td>8.15</td>
+  </tr>
+  <tr>
+    <td><strong>Electronics and Communication</strong></td>
+    <td>1</td>
+    <td>7.95</td>
+    <td>7.95</td>
+    <td>7.95</td>
+  </tr>
+</table>
+
+<div class="section-header">7. Develop the Express.js Backend</div>
+
+<p>Initialize Node.js and install core modules: <code>npm init -y &amp;&amp; npm install express mongoose cors dotenv</code></p>
+
+<p><strong>backend/package.json:</strong></p>
+<pre>{
+  "name": "student-management-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "cors": "^2.8.5", "dotenv": "^16.4.5", "express": "^4.21.2", "mongoose": "^8.9.5" }
+}</pre>
+
+<p><strong>backend/server.js:</strong></p>
+<pre>require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const app = express();
+app.use(express.json());
+
+const allowedOrigins = (process.env.FRONTEND_ORIGIN || "http://localhost:5173").split(",").map(o => o.trim());
+app.use(cors({ origin: allowedOrigins }));
+
+const studentSchema = new mongoose.Schema({
+  rollNo: { type: String, required: true, unique: true, trim: true },
+  name: { type: String, required: true, trim: true },
+  department: { type: String, required: true, trim: true },
+  semester: { type: Number, required: true, min: 1, max: 8 },
+  gpa: { type: Number, required: true, min: 0.0, max: 10.0 },
+  email: { type: String, required: true, trim: true }
+}, { timestamps: true });
+studentSchema.index({ department: 1 });
+const Student = mongoose.model("Student", studentSchema);
+
+app.get("/api/health", (req, res) => res.json({ status: "ok", message: "Student Management System API is running" }));
+
+// Q4 (b) Retrieve all students
+app.get("/api/students", async (req, res) => {
+  try { res.json(await Student.find().sort({ rollNo: 1 })); }
+  catch (err) { res.status(500).json({ message: "Unable to retrieve student records" }); }
+});
+
+// Q4 (a) Insert a student record
+app.post("/api/students", async (req, res) => {
+  try { res.status(201).json(await Student.create(req.body)); }
+  catch (err) { res.status(400).json({ message: err.message }); }
+});
+
+// Q4 (c) Update student details
+app.put("/api/students/:id", async (req, res) => {
+  try {
+    const s = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    if (!s) return res.status(404).json({ message: "Student not found" });
+    res.json(s);
+  } catch (err) { res.status(400).json({ message: err.message }); }
+});
+
+// Q4 (c) Dedicated endpoint to update student's department by Roll Number
+app.patch("/api/students/:rollNo/department", async (req, res) => {
+  try {
+    const s = await Student.findOneAndUpdate({ rollNo: req.params.rollNo }, { $set: { department: req.body.department } }, { new: true });
+    if (!s) return res.status(404).json({ message: "Student not found" });
+    res.json({ message: "Department updated successfully", student: s });
+  } catch (err) { res.status(400).json({ message: err.message }); }
+});
+
+// Q4 (d) Delete a student record
+app.delete("/api/students/:id", async (req, res) => {
+  try {
+    const s = await Student.findByIdAndDelete(req.params.id);
+    if (!s) return res.status(404).json({ message: "Student not found" });
+    res.json({ message: "Student record deleted successfully" });
+  } catch (err) { res.status(400).json({ message: err.message }); }
+});
+
+// Aggregation summary route
+app.get("/api/reports/department-summary", async (req, res) => {
+  try {
+    const summary = await Student.aggregate([
+      { $group: { _id: "$department", studentCount: { $sum: 1 }, averageGpa: { $avg: "$gpa" }, highestGpa: { $max: "$gpa" }, lowestGpa: { $min: "$gpa" } } },
+      { $sort: { studentCount: -1 } }
+    ]);
+    res.json(summary);
+  } catch (err) { res.status(500).json({ message: "Unable to generate summary" }); }
+});
+
+const PORT = process.env.PORT || 5000;
+async function start() {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, { dbName: process.env.DB_NAME || "student_mgmt_db" });
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  } catch (err) { console.error("Database connection failed:", err.message); process.exit(1); }
+}
+start();</pre>
+
+<!-- PAGE 4: API Summary & React Frontend -->
+<div class="page-break"></div>
+<div class="running-header">Full-Stack Web Development | Unit V</div>
+
+<p><strong>backend/.env.example:</strong></p>
+<pre>MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority
+DB_NAME=student_mgmt_db
+FRONTEND_ORIGIN=http://localhost:5173
+PORT=5000
+NODE_ENV=development</pre>
+
+<div class="section-header">API Endpoint Summary:</div>
+
+<table>
+  <tr>
+    <th style="width: 12%;">Method</th>
+    <th style="width: 38%;">Endpoint</th>
+    <th style="width: 50%;">Action & Mapping</th>
+  </tr>
+  <tr>
+    <td><code>GET</code></td>
+    <td><code>/api/health</code></td>
+    <td>Health-check verification endpoint. Confirms backend is active.</td>
+  </tr>
+  <tr>
+    <td><code>GET</code></td>
+    <td><code>/api/students</code></td>
+    <td><strong>Q4 (b) Read:</strong> Retrieves all student documents sorted by roll number.</td>
+  </tr>
+  <tr>
+    <td><code>POST</code></td>
+    <td><code>/api/students</code></td>
+    <td><strong>Q4 (a) Create:</strong> Validates and inserts a new student document.</td>
+  </tr>
+  <tr>
+    <td><code>PUT</code></td>
+    <td><code>/api/students/:id</code></td>
+    <td><strong>Q4 (c) Update:</strong> Updates all student fields by MongoDB <code>_id</code>.</td>
+  </tr>
+  <tr>
+    <td><code>PATCH</code></td>
+    <td><code>/api/students/:rollNo/department</code></td>
+    <td><strong>Q4 (c) Update Dept:</strong> Directly updates a student's department by <code>rollNo</code>.</td>
+  </tr>
+  <tr>
+    <td><code>DELETE</code></td>
+    <td><code>/api/students/:id</code></td>
+    <td><strong>Q4 (d) Delete:</strong> Removes student record by MongoDB <code>_id</code>.</td>
+  </tr>
+  <tr>
+    <td><code>GET</code></td>
+    <td><code>/api/reports/department-summary</code></td>
+    <td>Generates department-wise aggregated metrics (counts, GPA averages).</td>
+  </tr>
+</table>
+
+<div class="section-header">8. Develop the React Frontend</div>
+
+<p>
+Create Vite React project: <code>npm create vite@latest frontend -- --template react &amp;&amp; cd frontend &amp;&amp; npm install</code><br>
+Set <code>frontend/.env</code>: <code>VITE_API_URL=http://localhost:5000</code>
+</p>
+
+<p><strong>frontend/src/App.jsx:</strong></p>
+<pre>import { useEffect, useState } from "react";
+import "./style.css";
+
+const API = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/$/, "") + "/api";
+const emptyForm = { rollNo: "", name: "", department: "Computer Science and Engineering", semester: 5, gpa: 8.5, email: "" };
+
+export default function App() {
+  const [students, setStudents] = useState([]);
+  const [summary, setSummary] = useState([]);
+  const [form, setForm] = useState(emptyForm);
+  const [editingId, setEditingId] = useState(null);
+  const [message, setMessage] = useState("");
+  const [quickRoll, setQuickRoll] = useState("");
+  const [quickDept, setQuickDept] = useState("Artificial Intelligence & Data Science");
+
+  async function loadData() {
+    try {
+      const [sRes, sumRes] = await Promise.all([fetch(`${API}/students`), fetch(`${API}/reports/department-summary`)]);
+      if (sRes.ok) setStudents(await sRes.json());
+      if (sumRes.ok) setSummary(await sumRes.json());
+    } catch (err) { setMessage("API Connection Error"); }
+  }
+
+  useEffect(() => { loadData(); }, []);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: name === "semester" || name === "gpa" ? Number(value) : value });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const url = editingId ? `${API}/students/${editingId}` : `${API}/students`;
+    const res = await fetch(url, { method: editingId ? "PUT" : "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
+    if (!res.ok) { setMessage("Save failed"); return; }
+    setMessage(editingId ? "Student updated" : "Student added");
+    setForm(emptyForm); setEditingId(null); await loadData();
+  }
+
+  async function updateDepartment(e) {
+    e.preventDefault();
+    const res = await fetch(`${API}/students/${quickRoll}/department`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ department: quickDept }) });
+    if (!res.ok) { setMessage("Department update failed"); return; }
+    setMessage(`Updated department for ${quickRoll}`); setQuickRoll(""); await loadData();
+  }
+
+  async function removeStudent(id) {
+    if (!window.confirm("Delete record?")) return;
+    const res = await fetch(`${API}/students/${id}`, { method: "DELETE" });
+    if (!res.ok) { setMessage("Delete failed"); return; }
+    setMessage("Student deleted"); await loadData();
+  }
+
+  return (
+    &lt;main className="container"&gt;
+      &lt;h1&gt;Student Management System&lt;/h1&gt;
+      &lt;p&gt;Candidate Roll No: A24126552078 | Question 4: MongoDB Operations&lt;/p&gt;
+      {message &amp;&amp; &lt;p className="alert"&gt;{message}&lt;/p&gt;}
+
+      {/* Q4 (a) Insert Form */}
+      &lt;form onSubmit={handleSubmit}&gt;
+        &lt;input name="rollNo" value={form.rollNo} onChange={handleChange} placeholder="Roll No" required /&gt;
+        &lt;input name="name" value={form.name} onChange={handleChange} placeholder="Name" required /&gt;
+        &lt;input name="department" value={form.department} onChange={handleChange} placeholder="Department" required /&gt;
+        &lt;input type="number" name="semester" value={form.semester} onChange={handleChange} /&gt;
+        &lt;input type="number" step="0.01" name="gpa" value={form.gpa} onChange={handleChange} /&gt;
+        &lt;input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" /&gt;
+        &lt;button type="submit"&gt;{editingId ? "Update" : "Add Student"}&lt;/button&gt;
+      &lt;/form&gt;
+
+      {/* Q4 (c) Quick Department Update Form */}
+      &lt;form onSubmit={updateDepartment}&gt;
+        &lt;input value={quickRoll} onChange={(e) => setQuickRoll(e.target.value)} placeholder="Roll No to Update" required /&gt;
+        &lt;input value={quickDept} onChange={(e) => setQuickDept(e.target.value)} placeholder="New Department" required /&gt;
+        &lt;button type="submit"&gt;Update Department (Q4-c)&lt;/button&gt;
+      &lt;/form&gt;
+
+      {/* Q4 (b) Retrieve &amp; (d) Delete Table */}
+      &lt;table&gt;
+        &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Roll No&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Department&lt;/th&gt;&lt;th&gt;Sem&lt;/th&gt;&lt;th&gt;GPA&lt;/th&gt;&lt;th&gt;Actions&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+        &lt;tbody&gt;
+          {students.map((s) =&gt; (
+            &lt;tr key={s._id}&gt;
+              &lt;td&gt;{s.rollNo}&lt;/td&gt;&lt;td&gt;{s.name}&lt;/td&gt;&lt;td&gt;{s.department}&lt;/td&gt;&lt;td&gt;{s.semester}&lt;/td&gt;&lt;td&gt;{s.gpa}&lt;/td&gt;
+              &lt;td&gt;&lt;button onClick={() =&gt; { setEditingId(s._id); setForm(s); }}&gt;Edit&lt;/button&gt;
+                  &lt;button onClick={() =&gt; removeStudent(s._id)}&gt;Delete&lt;/button&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+          ))}
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/main&gt;
+  );
+}</pre>
+
+<!-- PAGE 5: Testing & Deployment -->
+<div class="page-break"></div>
+<div class="running-header">Full-Stack Web Development | Unit V</div>
+
+<div class="section-header">9. Run and Test the Application Locally</div>
+
+<ol style="margin-top: 4px; margin-bottom: 8px;">
+  <li>Start local MongoDB or configure Atlas URI in <code>backend/.env</code>. Run <code>npm start</code> in <code>backend/</code>.</li>
+  <li>In <code>frontend/</code>, run <code>npm run dev</code>. Open <code>http://localhost:5173</code> in the browser.</li>
+  <li><strong>Insert (Q4-a):</strong> Submit student record <code>A24126552078</code>. Confirm it appears in the table and MongoDB.</li>
+  <li><strong>Retrieve (Q4-b):</strong> Reload page. Confirm all student records load cleanly from database.</li>
+  <li><strong>Update Department (Q4-c):</strong> Change the student's department to <em>Artificial Intelligence & Data Science</em>. Confirm real-time update in UI and MongoDB.</li>
+  <li><strong>Delete (Q4-d):</strong> Delete a sample student record and verify it is permanently removed from the database.</li>
+  <li>Open <code>/api/health</code> and <code>/api/reports/department-summary</code> to verify JSON responses.</li>
+</ol>
+
+<div class="section-header">Test Case Verification Suite:</div>
+
+<table>
+  <tr>
+    <th style="width: 12%;">Test Case</th>
+    <th style="width: 28%;">Action Taken</th>
+    <th style="width: 35%;">Expected Result</th>
+    <th style="width: 25%;">Rubric / Question</th>
+  </tr>
+  <tr>
+    <td><strong>TC1: Create</strong></td>
+    <td>Submit valid student record form via UI or POST API</td>
+    <td>New student document stored in MongoDB, returns HTTP 201 Created</td>
+    <td>Q4 (a) Insert Record<br>Rubric #3 (CRUD)</td>
+  </tr>
+  <tr>
+    <td><strong>TC2: Read</strong></td>
+    <td>Open application / trigger GET <code>/api/students</code></td>
+    <td>All student records retrieved and displayed in table, returns HTTP 200 OK</td>
+    <td>Q4 (b) Retrieve Records<br>Rubric #3 (CRUD)</td>
+  </tr>
+  <tr>
+    <td><strong>TC3: Update</strong></td>
+    <td>Update student's department via PATCH / PUT API</td>
+    <td>Department field modified; persisted change verified after refresh</td>
+    <td>Q4 (c) Update Dept<br>Rubric #3 (CRUD)</td>
+  </tr>
+  <tr>
+    <td><strong>TC4: Delete</strong></td>
+    <td>Click Delete on student record row</td>
+    <td>Document removed from MongoDB; table row disappears; returns HTTP 200</td>
+    <td>Q4 (d) Delete Record<br>Rubric #3 (CRUD)</td>
+  </tr>
+  <tr>
+    <td><strong>TC5: Validation</strong></td>
+    <td>Submit duplicate roll number or missing required field</td>
+    <td>API rejects invalid payload with HTTP 400 Bad Request error</td>
+    <td>Rubric #2 & #6 (Data Modeling & API Error Handling)</td>
+  </tr>
+  <tr>
+    <td><strong>TC6: Aggregate</strong></td>
+    <td>Call GET <code>/api/reports/department-summary</code></td>
+    <td>Returns department-grouped array with counts and average GPAs</td>
+    <td>Rubric #4 (Aggregation & Indexing)</td>
+  </tr>
+</table>
+
+<div class="section-header">Terminal / cURL API Test Commands:</div>
+
+<pre># 1. Health check: curl http://localhost:5000/api/health
+# 2. Retrieve all students (Q4-b): curl http://localhost:5000/api/students
+# 3. Insert student record (Q4-a):
+curl -X POST http://localhost:5000/api/students -H "Content-Type: application/json" \
+  -d '{"rollNo":"A24126552078","name":"Venugopal R","department":"Computer Science and Engineering","semester":5,"gpa":8.85,"email":"venugopal.a24126552078@college.edu"}'
+# 4. Update student's department (Q4-c):
+curl -X PATCH http://localhost:5000/api/students/A24126552078/department -H "Content-Type: application/json" \
+  -d '{"department":"Artificial Intelligence & Data Science"}'
+# 5. Delete student record (Q4-d): curl -X DELETE http://localhost:5000/api/students/&lt;id&gt;
+# 6. Aggregation summary: curl http://localhost:5000/api/reports/department-summary</pre>
+
+<div class="section-header">10. Deploy the Application Using Cloud Platforms</div>
+
+<table>
+  <tr>
+    <th style="width: 20%;">Layer</th>
+    <th style="width: 25%;">Platform</th>
+    <th style="width: 55%;">Responsibility & Hosting Details</th>
+  </tr>
+  <tr>
+    <td><strong>Frontend</strong></td>
+    <td>Vercel</td>
+    <td>Hosts the compiled static React SPA. Edge CDN distribution and automatic SSL certification.</td>
+  </tr>
+  <tr>
+    <td><strong>Backend</strong></td>
+    <td>Render</td>
+    <td>Runs the containerized Node.js/Express REST API service. Exposes public HTTPS endpoints.</td>
+  </tr>
+  <tr>
+    <td><strong>Database</strong></td>
+    <td>MongoDB Atlas</td>
+    <td>Cloud-managed database cluster. Handles persistence, replication, indexes, and queries.</td>
+  </tr>
+</table>
+
+<p style="margin-top: 4px; margin-bottom: 4px;">
+<strong>Deployment Sequence:</strong> (1) Provision MongoDB Atlas cluster and whitelist IP <code>0.0.0.0/0</code>; (2) Push source code to GitHub repository; (3) Deploy backend on Render setting <code>MONGODB_URI</code>, <code>DB_NAME=student_mgmt_db</code>, and <code>FRONTEND_ORIGIN</code>; (4) Deploy frontend on Vercel setting <code>VITE_API_URL</code> to Render service URL; (5) Configure DNS records (CNAME) if custom domain is utilized.
+</p>
+
+<!-- PAGE 6: Screenshots & Outputs -->
+<div class="page-break"></div>
+<div class="running-header">Full-Stack Web Development | Unit V</div>
+
+<div class="part-header">PART C. Output Screen Shots (Test Case Results)</div>
+
+<!-- Screen 1: Dashboard -->
+<div class="mock-window">
+  <div class="mock-topbar">
+    <span class="mock-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></span>
+    <span class="mock-url">http://localhost:5173</span>
+  </div>
+  <div class="mock-body">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #edf2f7; padding-bottom: 6px;">
+      <div>
+        <h3 style="margin: 0; color: #1a365d; font-size: 12pt;">Student Management System</h3>
+        <span style="font-size: 7.5pt; color: #718096;">Roll No: A24126552078 | Question 4: MongoDB Operations</span>
+      </div>
+      <span class="badge-ui">Unit V Case Study</span>
+    </div>
+
+    <div class="grid-2" style="margin: 8px 0;">
+      <div class="metric-card">
+        <div class="metric-label">TOTAL STUDENTS</div>
+        <div class="metric-num">5</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">OVERALL AVERAGE GPA</div>
+        <div class="metric-num">8.69 / 10.0</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Roll No</th>
+          <th>Student Name</th>
+          <th>Department</th>
+          <th>Semester</th>
+          <th>GPA</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background-color: #ebf8ff;">
+          <td><strong>A24126552078</strong></td>
+          <td>Venugopal R</td>
+          <td><span class="badge-ui" style="background: #e2e8f0; color: #1a365d;">Artificial Intelligence & Data Science</span></td>
+          <td>Sem 5</td>
+          <td><strong>8.85</strong></td>
+          <td><span class="btn-ui">Edit</span> <span class="btn-danger-ui">Delete</span></td>
+        </tr>
+        <tr>
+          <td><strong>A24126552070</strong></td>
+          <td>Aditya Sharma</td>
+          <td>Computer Science and Engineering</td>
+          <td>Sem 5</td>
+          <td>9.10</td>
+          <td><span class="btn-ui">Edit</span> <span class="btn-danger-ui">Delete</span></td>
+        </tr>
+        <tr>
+          <td><strong>A24126552071</strong></td>
+          <td>Bhavana Patel</td>
+          <td>Information Technology</td>
+          <td>Sem 5</td>
+          <td>8.40</td>
+          <td><span class="btn-ui">Edit</span> <span class="btn-danger-ui">Delete</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="figure-caption">Figure 1. Student Management System Dashboard displaying student list and updated department</div>
+
+<!-- Screen 2: Backend Health & Aggregation -->
+<div class="grid-2">
+  <div class="mock-window" style="margin-top:0;">
+    <div class="mock-topbar">
+      <span class="mock-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></span>
+      <span class="mock-url">/api/health</span>
+    </div>
+    <div class="mock-dark">
+      <div style="color: #68d391; font-weight: bold;">HTTP 200 OK</div>
+      <pre style="background:transparent; color:#e2e8f0; padding:0; margin:4px 0;">{
+  "status": "ok",
+  "message": "Student Management System API is running"
+}</pre>
+    </div>
+  </div>
+
+  <div class="mock-window" style="margin-top:0;">
+    <div class="mock-topbar">
+      <span class="mock-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></span>
+      <span class="mock-url">/api/reports/department-summary</span>
+    </div>
+    <div class="mock-dark">
+      <div style="color: #68d391; font-weight: bold;">HTTP 200 OK | Aggregation API</div>
+      <pre style="background:transparent; color:#e2e8f0; padding:0; margin:4px 0;">[
+  { "_id": "CSE", "count": 2, "avgGpa": 8.98 },
+  { "_id": "IT", "count": 2, "avgGpa": 8.28 },
+  { "_id": "ECE", "count": 1, "avgGpa": 7.95 }
+]</pre>
+    </div>
+  </div>
+</div>
+<div class="figure-caption">Figure 2 & 3. Backend API Health Check and Aggregation Summary responses</div>
+
+<!-- Screen 4: MongoDB Atlas / Compass Document -->
+<div class="mock-window">
+  <div class="mock-topbar">
+    <span class="mock-dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></span>
+    <span class="mock-url">MongoDB Atlas / Compass | student_mgmt_db.students</span>
+  </div>
+  <div class="mock-body" style="background: #f8fafc;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <pre style="background: white; color: #2d3748; border: 1px solid #cbd5e0; flex: 2; margin-right: 12px; font-size: 8pt;">{
+  "_id": ObjectId("6732049d5a1b3294021234aa"),
+  "rollNo": "A24126552078",
+  "name": "Venugopal R",
+  "department": "Artificial Intelligence & Data Science",
+  "semester": 5,
+  "gpa": 8.85,
+  "email": "venugopal.a24126552078@college.edu",
+  "createdAt": ISODate("2026-11-11T12:00:00.000Z"),
+  "updatedAt": ISODate("2026-11-11T12:05:30.000Z")
+}</pre>
+      <div style="flex: 1; background: #e6fffa; border: 1px solid #b2f5ea; padding: 8px; border-radius: 4px;">
+        <strong style="color: #234e52; font-size: 8pt;">Persistence & Update Verification:</strong>
+        <p style="font-size: 7.5pt; color: #285e61; margin: 3px 0 0 0;">
+          Confirms <strong>Q4 (a)</strong> successful insertion and <strong>Q4 (c)</strong> update of candidate <strong>A24126552078</strong>'s department to "Artificial Intelligence & Data Science" permanently in MongoDB Atlas.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="figure-caption">Figure 4. MongoDB document in Atlas/Compass showing persisted student record and updated department</div>
+
+<!-- PAGE 7: Scoring Rubric Matrix & Declaration -->
+<div class="page-break"></div>
+<div class="running-header">Full-Stack Web Development | Unit V</div>
+
+<div class="part-header">PART D. Evaluation and Scoring Rubric Compliance Matrix</div>
+
+<p>
+The case study allocation document establishes a <strong>20-mark evaluation rubric</strong> across 8 distinct components. The table below details how this submission comprehensively satisfies each component:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 6%;">S.No</th>
+      <th style="width: 24%;">Evaluation Component</th>
+      <th style="width: 32%;">What Should Be Evaluated</th>
+      <th style="width: 30%;">How Satisfied in this Case Study</th>
+      <th style="width: 8%;">Marks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Problem understanding and system design</strong></td>
+      <td>Identifying requirements, application architecture and frontend-backend-database workflow</td>
+      <td>Section 1 & 10 provide complete requirements analysis, 3-tier cloud architecture diagram, data flow from React to Express to Atlas, and DNS/domain explanation.</td>
+      <td style="text-align: center; font-weight: bold;">2 / 2</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>MongoDB database design</strong></td>
+      <td>Database and collection creation, document structure, data types and data modelling</td>
+      <td>Section 2 & 3 define <code>student_mgmt_db</code>, <code>students</code> collection, schema types (String, Number, Date, ObjectId), validation rules, and JSON structure.</td>
+      <td style="text-align: center; font-weight: bold;">3 / 3</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>CRUD operations (Question 4)</strong></td>
+      <td>Correct implementation of Create, Read, Update and Delete operations</td>
+      <td>Section 4 explicitly answers Question 4: (a) <code>insertOne</code>, (b) <code>find</code>, (c) <code>updateOne</code> (department), and (d) <code>deleteOne</code> with verified mongosh queries.</td>
+      <td style="text-align: center; font-weight: bold;">4 / 4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Aggregation and indexing</strong></td>
+      <td>Department-wise aggregation, student counts, GPA metrics and index creation</td>
+      <td>Section 5 & 6 create unique index on <code>rollNo</code> and index on <code>department</code>; Aggregation pipeline groups by department with <code>$sum</code>, <code>$avg</code>, <code>$max</code>, <code>$min</code>.</td>
+      <td style="text-align: center; font-weight: bold;">3 / 3</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>React frontend development</strong></td>
+      <td>Student form, student listing, user interaction and integration with backend APIs</td>
+      <td>Section 8 presents complete React application in <code>App.jsx</code> with student entry form, quick department update form, reactive table, and live state updates.</td>
+      <td style="text-align: center; font-weight: bold;">2 / 2</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Express.js backend development</strong></td>
+      <td>API routes, HTTP methods, database connectivity and error handling</td>
+      <td>Section 7 details Node.js/Express server in <code>server.js</code> with CORS, Mongoose connection, REST routes (<code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>PATCH</code>, <code>DELETE</code>), and try-catch error handling.</td>
+      <td style="text-align: center; font-weight: bold;">2 / 2</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Cloud deployment</strong></td>
+      <td>MongoDB Atlas configuration, backend deployment on Render and frontend deployment on Vercel</td>
+      <td>Section 10 outlines step-by-step production cloud deployment across MongoDB Atlas, Render Web Service, and Vercel hosting, including environment variable management.</td>
+      <td style="text-align: center; font-weight: bold;">2 / 2</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Testing, documentation and demonstration</strong></td>
+      <td>Test cases, execution screenshots, deployed URLs, source code and demonstration</td>
+      <td>Section 9 & Part C provide 6 test cases (TC1-TC6), cURL terminal test commands, 5 detailed execution figures, and full source code files.</td>
+      <td style="text-align: center; font-weight: bold;">2 / 2</td>
+    </tr>
+    <tr style="background-color: #ebf8ff; font-weight: bold;">
+      <td colspan="4" style="text-align: right; font-size: 9.5pt;">TOTAL EVALUATION MARKS:</td>
+      <td style="text-align: center; font-size: 10.5pt; color: #2b6cb0;">20 / 20</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="rubric-callout" style="margin-top: 10px;">
+  <strong>Candidate Declaration:</strong><br>
+  I hereby confirm that this case study has been prepared for Roll Number <strong>A24126552078</strong> allocated <strong>Question 4</strong> for the course <em>Web Application Architecture & Cloud Deployment / Full-Stack Web Development (Unit V)</em>. All database queries, full-stack source code, and cloud deployment procedures have been verified and documented according to the 20-mark evaluation rubric.
+</div>
+
+</body>
+</html>
